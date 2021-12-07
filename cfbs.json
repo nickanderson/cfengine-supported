@@ -1,0 +1,15 @@
+{
+  "name": "cfengine-supported",
+  "description": "Module for inventorying the support status for the current version of CFEngine.",
+  "type": "module-repo",
+  "provides": {
+    "cfengine-supported": {
+      "description": "Inventory the support status for the current version of CFEngine.",
+      "tags": ["inventory", "security"],
+      "steps": [
+        "copy ./inventory-cfengine-version-support-status.cf services/cfengine-supported/",
+        "json ./cfbs/def.json def.json"
+      ]
+    }
+  }
+}

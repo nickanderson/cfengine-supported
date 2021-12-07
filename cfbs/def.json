@@ -1,0 +1,10 @@
+{
+  "vars": {
+    "control_common_bundlesequence_classification": [
+      "default:inventory_cfengine_version_support_status"
+    ]
+  },
+  "inputs": [
+    "services/cfengine-supported/inventory-cfengine-version-support-status.cf"
+  ]
+}

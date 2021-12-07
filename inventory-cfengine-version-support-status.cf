@@ -1,0 +1,41 @@
+bundle agent inventory_cfengine_version_support_status
+{
+  vars:
+
+      "_lts_eos_map[3.7]"  string => "2018-08-31";
+      "_lts_eos_map[3.10]" string => "2019-12-28";
+      "_lts_eos_map[3.12]" string => "2021-08-31";
+      "_lts_eos_map[3.15]" string => "2022-12-31";
+      "_lts_eos_map[3.18]" string => "2024-08-31";
+      "_lts_eos_map[3.21]" string => "to be determined";
+      "_lts_eos_map[3.24]" string => "to be determined";
+      "_lts_eos_map[3.27]" string => "to be determined";
+      "_lts_eos_map[3.30]" string => "to be determined";
+
+      "_lts_major_minor"
+        slist => getindices( "_lts_eos_map" );
+
+      "supported" -> { "https://cfengine.com/extended-support/" }
+        string => ifelse( some( "$(sys.cf_version_major)\.$(sys.cf_version_minor)",
+                                @(_lts_major_minor) ), "yes", "no" ),
+        meta => { "inventory", "attribute_name=CFEngine version supported" };
+
+      "supported_until"
+        string => "$(_lts_eos_map[$(sys.cf_version_major).$(sys.cf_version_minor)])",
+        meta => { "inventory", "attribute_name=CFEngine version supported until" },
+        if => strcmp( "yes", $(supported) );
+
+      "lts_series"
+        string => "$(sys.cf_version_major).$(sys.cf_version_minor).x",
+        meta => { "inventory", "attribute_name=CFEngine version LTS series" },
+        if => strcmp( "yes", $(supported) );
+
+  reports:
+    inform_mode|verbose_mode::
+      "CFEngine Version: $(sys.cf_version)";
+      "CFEngine Version supported: $(supported)";
+      "CFEngine Version supported until: $(supported_until)"
+        if => strcmp( "yes", $(supported) );
+      "CFEngine Version LTS series: $(lts_series)"
+        if => strcmp( "yes", $(supported) );
+}

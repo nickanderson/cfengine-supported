@@ -1,0 +1,9 @@
+CFEngine gets regular updates. Don't miss out on the latest and greatest bug fixes and features. Use this module to help determine if you are running a supported version of CFEngine.
+
+* Inventory
+
+- =CFEngine version supported= :: =yes/no=
+- =CFEngine version supported until= :: =<YYYY-MM-DD>=
+- =CFEngine version LTS series= :: =<major.minor.x>=
+
+[[https://raw.github.com/nickanderson/cfengine-supported/master/host-info-inventory.png]]
