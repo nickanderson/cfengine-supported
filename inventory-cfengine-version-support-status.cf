@@ -7,7 +7,7 @@ bundle agent inventory_cfengine_version_support_status
       "_lts_eos_map[3.12]" string => "2021-08-31";
       "_lts_eos_map[3.15]" string => "2022-12-31";
       "_lts_eos_map[3.18]" string => "2024-08-31";
-      "_lts_eos_map[3.21]" string => "2025-12-31";
+      "_lts_eos_map[3.21]" string => "2025-12-22";
       "_lts_eos_map[3.24]" string => "to be determined";
       "_lts_eos_map[3.27]" string => "to be determined";
       "_lts_eos_map[3.30]" string => "to be determined";
